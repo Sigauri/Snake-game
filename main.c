@@ -465,18 +465,6 @@ void eat(struct snake *snk)
     
 }
 
-int wall_hit(struct snake *snk)
-{
-    int head_x = snk->head_coords.x;
-    int head_y = snk->head_coords.y;
-
-    int ret_value = 0;
-
-    if(head_x < 1 || head_x > (FIELD_WIDTH - 1)) ret_value = 1;
-    if(head_y < 1 || head_y > (FIELD_HEIGHT - 1)) ret_value = 1;
-    return ret_value;
-}
-
 int main()
 {
 
@@ -492,11 +480,13 @@ int main()
     while(!exit)
     {
         fflush(stdout);
+
+         
+        
         eat(&snk);
         draw_snake(&snk);
         display_info(&snk);
         exit = process_input(&snk);
-        exit = wall_hit(&snk);
         wait(50);  
     } 
 
